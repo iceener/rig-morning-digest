@@ -1,10 +1,10 @@
 ---
 id: 7
 title: "Publish and submit a temporary review preview"
-state: open
+state: closed
 labels: ["plan:morning-digest"]
 created: "2026-10-19T17:52:03Z"
-closed: null
+closed: 2026-10-19T20:29:48Z
 ---
 
 Source: plan.md § 3
@@ -14,3 +14,11 @@ Scope: Run rig with the supplied LANE_MARKER in untracked .env. Use a command to
 Done when: The public HTTPS HTML preview is readable and the reviewer has received its URL and the plan issues. Record the submission result.
 
 Blocked by: #2, #3, #4, #5, #6
+
+Review status: Course acknowledged the submission with “got it. i'll look in a few.” The reviewer is queued; review is pending.
+
+## Closing comment
+
+done: published the self-contained digest preview and course accepted it for review
+worker: Codex · gpt-6-luna · medium
+commit: aa179d7
