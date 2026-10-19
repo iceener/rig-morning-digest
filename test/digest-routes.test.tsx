@@ -1,27 +1,22 @@
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { Hono } from 'hono';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { RigConfig } from '../src/config.js';
-import { registerDigestJson } from '../src/digest/json-route.js';
-import { registerDigestPage } from '../src/digest/page-route.js';
 import type { NightDigest } from '../src/digest/types.js';
+import { createApp } from '../src/app.js';
 
 const originalLaneMarker = process.env.LANE_MARKER;
 let runsDir = '';
 
-function makeApp(): Hono {
-  const app = new Hono();
+function makeApp() {
   const config: RigConfig = {
     adapter: 'shim',
     installed: '2026-10-29T14:06:00+01:00',
     beatEverySeconds: 60,
     runsDir,
   };
-  registerDigestPage(app, config);
-  registerDigestJson(app, config);
-  return app;
+  return createApp(config);
 }
 
 function event(
@@ -118,5 +113,25 @@ describe('digest routes', () => {
     });
     expect(htmlResponse.status).toBe(200);
     expect(await htmlResponse.text()).toContain('nothing ran');
+  });
+
+  it('shows temporary nights as digest links with their event counts on the board', async () => {
+    const response = await makeApp().request('/');
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain('<a href="/digest/2026-10-28">2026-10-28</a>');
+    expect(html).toContain('ok 2');
+    expect(html).toContain('retry 3');
+    expect(html).toContain('fail 1');
+    expect(html).toContain('<a href="/digest/2026-10-27">2026-10-27</a>');
+    expect(html).toContain('2026-10-27</a> · ok 0 · retry 0 · fail 0');
+  });
+
+  it('returns 404 for an invalid night name', async () => {
+    const app = makeApp();
+
+    expect((await app.request('/digest/not-a-date')).status).toBe(404);
+    expect((await app.request('/api/digest/not-a-date')).status).toBe(404);
   });
 });
