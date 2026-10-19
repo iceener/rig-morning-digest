@@ -1,10 +1,10 @@
 ---
 id: 8
 title: "Remove the reviewed preview and archive the plan"
-state: open
+state: closed
 labels: ["plan:morning-digest"]
 created: "2026-10-19T17:52:05Z"
-closed: null
+closed: "2026-10-19T20:41:57Z"
 ---
 
 Source: plan.md § 4
@@ -14,3 +14,9 @@ Scope: Wait for review to finish. Delete the public preview object and verify th
 Done when: The preview URL returns no preview. The completed plan and issue list are archived.
 
 Blocked by: #7 and completed review
+
+## Closing comment
+
+done: Removed the reviewed preview and archived the morning-digest plan
+worker: Codex · gpt-6-luna · medium
+commit: none

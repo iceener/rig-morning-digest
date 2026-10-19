@@ -1,6 +1,6 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
 ---
@@ -75,3 +75,18 @@ The preview shows lane data on a public link (ADR 0003). Delete the object; the 
 resolving. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link returns nothing.
+
+## Issue files
+
+- [#1 — Digest type contract](../../issues/001-digest-type-contract.md)
+- [#2 — Read and aggregate nightly run logs](../../issues/002-read-and-aggregate-nightly-run-logs.md)
+- [#3 — Render the digest page](../../issues/003-render-the-digest-page.md)
+- [#4 — Serve digest JSON](../../issues/004-serve-digest-json.md)
+- [#5 — Link board nights to their digest](../../issues/005-link-board-nights-to-their-digest.md)
+- [#6 — Test digest routes](../../issues/006-test-digest-routes.md)
+- [#7 — Publish and submit a temporary review preview](../../issues/007-publish-and-submit-a-temporary-review-preview.md)
+- [#8 — Remove the reviewed preview and archive the plan](../../issues/008-remove-the-reviewed-preview-and-archive-the-plan.md)
+
+## Review and cleanup
+
+The reviewer completed review and requested removal. All three Filebin bins from successful uploads are absent, and their file URLs return 404. The submitted preview URL returned 404 on two direct checks before its signed access expired. The earlier discarded preview source also returns 404. Request and reply details are retained outside the repository.
